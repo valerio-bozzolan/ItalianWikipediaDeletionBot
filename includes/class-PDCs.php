@@ -159,7 +159,7 @@ class PDCs {
 		// query continuation
 		foreach( $query->getGenerator() as $response ) {
 			// match page results and PDCs by title
-			( new PageMatcher( $response->query, $pdcs ) )
+			( new PageMatcher( $response, $pdcs ) )
 				->matchByTitle( $matching_callback, $pdc_page_title_callback );
 		}
 	}

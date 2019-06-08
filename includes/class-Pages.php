@@ -66,7 +66,7 @@ class Pages {
 		// query continuation
 		foreach( $query->getGenerator() as $response ) {
 			// match response pages with my pages
-			( new PageMatcher( $response->query, $pages ) )
+			( new PageMatcher( $response, $pages ) )
 				->matchByTitle( $matching_callback, $page_title_callback );
 		}
 	}

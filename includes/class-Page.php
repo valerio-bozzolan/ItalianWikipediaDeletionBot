@@ -197,7 +197,7 @@ class Page {
 	 * @return mw\API
 	 */
 	public static function api() {
-		return WikipediaIt::getInstance();
+		return WikipediaIt::instance();
 	}
 
 	/**
