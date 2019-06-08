@@ -697,43 +697,12 @@ class PDC extends Page {
 		$_ = '[ \t\n]*';
 
 		/*
-		 * Pattern to match a PDC turnover (actually this information is unuseful)
-		 *
-		 * {{cancellazione|9}}
-		 * or explicitly:
-		 * {{cancellazione|1 = 9}}
-		 */
-		$PARAM_NUM =
-			'(?:' .
-				'\|' . $_ .
-					'(?:' . '1' . $_ . '=' . $_ . ')?' . // 1 =
-					'[0-9]+' . $_ .                      // turnover number
-			')?';
-
-		/*
-		 * Pattern to match a PDC subject theme
-		 *
-		 * {{cancellazione|arg  = something}}
-		 * or
-		 * {{cancellazione|arg2 = something}}
-		 * or
-		 * {{cancellazione|argomento = something}}
-		 * or
-		 * {{cancellazione|argomento2 = something}}
-		 */
-		$PARAM_THEME =
-			'(?:' .
-				'\|' . $_ .
-					'arg(?:omento)?[0-9]?' . $_ .
-						'=' . $_ .
-							'([0-9a-zA-ZàèìòùÀÈÌÒÙ\-\/\'_. ]+?)' . $_ .
-			')?';
-
-		/*
 		 * Complete pattern to match all the PDC arguments
 		 *
 		 * {{Cancellazione|9|arg=something|arg2=something}}
 		 * {{Cancella     |9|arg=something|arg2=something}}
+		 * {{cancellazione|argomento = something}}
+		 * {{cancellazione|argomento2 = something}}
 		 *
 		 * This pattern is a bit repetitive because PCRE does not support to
 		 * match a group multiple times.
@@ -741,19 +710,42 @@ class PDC extends Page {
 		 *
 		 * @TODO: use a wikitext parser
 		 */
-		$PATTERN = '/' .
-			'{{' . $_ . '(?:[Cc]ancellazione|[Cc]ancella)' . $_ .
-				$PARAM_NUM   .
-				$PARAM_THEME .
-				$PARAM_THEME .
-			'}}/';
+		$PATTERN = '/{{' . $_ . '(?:[Cc]ancellazione|[Cc]ancella)' . $_ . '\|(.+?)}}/';
 
-		// run the regex and extrapulate the themes
+		// catch the templates
 		preg_match( $PATTERN, $page_content, $matches );
-		for( $i = 1; $i < count( $matches ); $i++ ) {
-			$this->addSubjectTheme( trim( $matches[ $i ] ) );
-		}
 
+		if( isset( $matches[1] ) ) {
+
+			// '|argomento=2|arg2=musica|9'
+			$arguments = $matches[1];
+
+			// split template arguments
+			$args = explode( '|', $arguments );
+			foreach( $args as $arg ) {
+
+				// split argument key = value
+				$key_value = explode( '=', $arg, 2 );
+				if( count( $key_value ) === 2 ) {
+
+					// separate key and value and strip spaces
+					list( $key, $value ) = $key_value;
+					$key   = trim( $key,   " \t\n" );
+					$value = trim( $value, " \t\n" );
+
+					// match 'arg', 'arg1', 'arg2' 'argomento', 'argomento2' etc.
+					for( $i = 0; $i < 5; $i++ ) {
+						$suffix = $i;
+						if( !$suffix ) {
+							$suffix = '';
+						}
+						if( $key === "arg$suffix" || $key === "argomento$suffix" ) {
+							$this->addSubjectTheme( $value );
+						}
+					}
+				}
+			}
+		}
 		return $this;
 	}
 }
