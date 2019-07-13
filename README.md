@@ -9,6 +9,11 @@ More informations here: https://it.wikipedia.org/wiki/Utente:BotCancellazioni
 	sudo apt install git php-cli
 	git clone --recursive https://github.com/valerio-bozzolan/ItalianWikipediaDeletionBot
 
+## Update
+
+	git pull
+	git submodule update --init --recursive
+
 ## Configuration
 
 1. Open the file [`config-example.php`](config-example.php) with a text editor
