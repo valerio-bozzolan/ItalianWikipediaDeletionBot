@@ -7,7 +7,7 @@
 #	https://it.wikipedia.org/wiki/Utente:MauroBot/BotCancellazioni/core.js
 # 	https://creativecommons.org/licenses/by-sa/3.0/
 #   https://wikimediafoundation.org/wiki/Special:MyLanguage/Terms_of_Use/it
-# Copyright (C) 2018 Valerio Bozzolan
+# Copyright (C) 2018, 2019 Valerio Bozzolan
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as
 # published by the Free Software Foundation, either version 3 of the
@@ -227,10 +227,16 @@ class PDC extends Page {
 				$is_running = true;
 				break;
 			}
-			$category = CategoryYearMonthDayTypes::createParsingTitle( $category_raw->title );
-			if( $category ) {
-				$category->timestamp = self::createDateTimeFromString( $category_raw->timestamp );
-				$categories[] = $category;
+
+			// try to recognize this category
+			try {
+				$category = CategoryYearMonthDayTypes::createParsingTitle( $category_raw->title );
+				if( $category ) {
+					$category->timestamp = self::createDateTimeFromString( $category_raw->timestamp );
+					$categories[] = $category;
+				}
+			} catch( PDCUnknownCategoryException $e ) {
+				\cli\Log::warn( $e->getMessage() );
 			}
 		}
 
