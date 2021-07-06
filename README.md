@@ -6,17 +6,21 @@ More informations here: https://it.wikipedia.org/wiki/Utente:BotCancellazioni
 
 ## Installation
 
-	sudo apt install git php-cli
-	git clone --recursive https://github.com/valerio-bozzolan/ItalianWikipediaDeletionBot
+```
+sudo apt install git php-cli
+git clone --recursive https://gitpull.it/source/ItalianWikipediaDeletionBot.git
+```
 
 ## Update
 
-	git pull
-	git submodule update --init --recursive
+```
+git pull
+git submodule update --init --recursive
+```
 
 ## Configuration
 
-1. Open the file [`config-example.php`](config-example.php) with a text editor
+1. Open the file `config-example.php` with a text editor
 2. Fill your bot credentials
 3. Save-as `config.php`
 
@@ -24,37 +28,53 @@ More informations here: https://it.wikipedia.org/wiki/Utente:BotCancellazioni
 
 Run on today:
 
-    ./bot.php
+```
+./bot.php
+```
 
 Run on the latest 10 days from today:
 
-    ./bot.php --days=10
+```
+./bot.php --days=10
+```
 
 Run on a specific date (year-month-day):
 
-    ./bot.php --from=2018-03-13
+```
+./bot.php --from=2018-03-13
+```
 
 Run on a specific date and for 10 days before it:
 
-	./bot.php --days=10 --from=2018-03-13
+```
+./bot.php --days=10 --from=2018-03-13
+```
 
 Quit if someone was running the bot just `5` minutes ago (that is the default behaviour):
 
-	./bot.php --minutes-ago=5
+```
+./bot.php --minutes-ago=5
+```
 
 Ask before saving and enable verbose mode:
 
-	./bot.php --ask --verbose
+```
+./bot.php --ask --verbose
+```
 
 Help:
 
-	./bot.php --help
+```
+./bot.php --help
+```
 
 ## Update
 
 To fetch the updates:
 
-    git pull --recurse-submodules
+```
+git pull --recurse-submodules
+```
 
 ## Hacking
 
@@ -62,6 +82,7 @@ Most of the behaviours — as the content of the categories, the pages, their ed
 
 Start becoming familiar with their structure:
 
+```
 	<!-- START DOCUMENTATION -->
 	This is the place for some documentation, expecially about "placeholders".
 	<!-- START SPECIFIC EXAMPLE -->
@@ -70,6 +91,7 @@ Start becoming familiar with their structure:
 	This is the place for the most important part of this file.
 	This part is what this template will generates.
 	It uses stuff like "$1" or "%1%02d" as generic placeholders.
+```
 
 To be honest: everything above the `<!-- START TEMPLATE -->` line it's pure documentation sugar. It's written to help you. I've spent some minutes on them. Please RTFM. asd
 
@@ -77,7 +99,7 @@ A non-traumatic template example can be found [here](templates/CATEGORY_YEAR.con
 
 ## Framework
 
-You may not want to know this: HTTP connections, MediaWiki APIs (including login and tokens etc.), and other stuff, are handled by the [boz-mw](https://github.com/valerio-bozzolan/boz-mw) framework.
+You may not want to know this: HTTP connections, MediaWiki APIs (including login and tokens etc.), and other stuff, are handled by the [boz-mw](https://gitpull.it/w/first_steps_with_boz-mw/) framework.
 
 ## License
 
