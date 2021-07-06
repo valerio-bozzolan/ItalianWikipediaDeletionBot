@@ -1,5 +1,5 @@
 <?php
-# Copyright (C) 2018 Valerio Bozzolan
+# Copyright (C) 2018, 2019, 2020, 2021 Valerio Bozzolan
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as
 # published by the Free Software Foundation, either version 3 of the
@@ -63,10 +63,6 @@ class Template {
 		$s = vsprintf( $content, $args );
 
 		if( false === $s ) {
-
-			echo "CONTENT\n";
-			echo $content . "\n";
-			var_dump( "ASD", $args );
 			throw new \Exception( "wrong number of arguments for template $name" );
 		}
 
