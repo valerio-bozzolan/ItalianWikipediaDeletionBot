@@ -1,6 +1,6 @@
 <?php
 # it.wiki deletion bot in PHP
-# Copyright (C) 2018 Valerio Bozzolan
+# Copyright (C) 2018, 2019, 2020, 2021 Valerio Bozzolan
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as
 # published by the Free Software Foundation, either version 3 of the
@@ -77,6 +77,26 @@ abstract class PageTemplated extends Page {
 	 * @return array
 	 */
 	public abstract function getTemplateArguments();
+
+	/**
+	 * Get the template arguments, plus some more arguments
+	 *
+	 * @param array $args Array of arguments
+	 * @param mixed $more More arguments (one string or an array)
+	 * @return array
+	 */
+	public static function sumArgs( $args, $more ) {
+
+		if( is_array( $more ) ) {
+			// append all the fields
+			$args = array_merge( $args, $more );
+		} else {
+			// append just one field
+			$args[] = $more;
+		}
+
+		return $args;
+	}
 
 	/**
 	 * Get the edit summary for this page from its template

@@ -63,6 +63,10 @@ class Template {
 		$s = vsprintf( $content, $args );
 
 		if( false === $s ) {
+
+			echo "CONTENT\n";
+			echo $content . "\n";
+			var_dump( "ASD", $args );
 			throw new \Exception( "wrong number of arguments for template $name" );
 		}
 

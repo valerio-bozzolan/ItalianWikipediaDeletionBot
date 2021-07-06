@@ -1,6 +1,6 @@
 <?php
 # it.wiki deletion bot in PHP
-# Copyright (C) 2018 Valerio Bozzolan
+# Copyright (C) 2018, 2019, 2020, 2021 Valerio Bozzolan
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as
 # published by the Free Software Foundation, either version 3 of the
@@ -51,7 +51,7 @@ abstract class PageYear extends PageTemplated {
 	/**
 	 * Template arguments
 	 *
-	 * @override CategoryTemplated::getTemplateArguments()
+	 * @override PageTemplated::getTemplateArguments()
 	 */
 	public function getTemplateArguments() {
 		return [ $this->getYear() ];

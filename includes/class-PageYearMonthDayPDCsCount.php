@@ -1,6 +1,6 @@
 <?php
 # it.wiki deletion bot in PHP
-# Copyright (C) 2018 Valerio Bozzolan
+# Copyright (C) 2018, 2019, 2020, 2021 Valerio Bozzolan
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as
 # published by the Free Software Foundation, either version 3 of the
@@ -45,6 +45,8 @@ class PageYearMonthDayPDCsCount extends PageYearMonthDayPDCs {
 	 */
 	public function getTemplateArguments() {
 
+		$parent_args = parent::getTemplateArguments();
+
 		$sections = [];
 
 		// runnings
@@ -55,10 +57,15 @@ class PageYearMonthDayPDCsCount extends PageYearMonthDayPDCs {
 				$entries[] = $this->createPDCEntryContent( ++$i, $pdc );
 			}
 		}
+
 		if( $entries ) {
-			$sections[] = Template::get( self::TEMPLATE_NAME . '.RUNNING.section', [
-				implode( "\n", $entries )
-			] );
+			$sections[] = Template::get(
+				// template name
+				'PAGE_COUNT.RUNNING.section',
+
+				// template arguments
+				self::sumArgs( $parent_args, implode( "\n", $entries ) )
+			);
 		}
 
 		// endeds
@@ -70,38 +77,54 @@ class PageYearMonthDayPDCsCount extends PageYearMonthDayPDCs {
 			}
 		}
 		if( $entries ) {
-			$sections[] = Template::get( self::TEMPLATE_NAME . '.ENDED.section', [
-				implode( "\n", $entries )
-			] );
+			$sections[] = Template::get(
+				// template name
+				'PAGE_COUNT.ENDED.section',
+
+				// template arguments
+				self::sumArgs( $parent_args, [ implode( "\n", $entries ) ] )
+			);
 		}
 
 		// with some fixable errors
 		$erroneous = [];
 		foreach( $this->getPDCs() as $pdc ) {
-			if( ! $pdc->isTitleSubjectConsistent() ) {
-				$erroneous[] = self::createPDCErrorMessage( $pdc,
-					Template::get( self::TEMPLATE_NAME . '.ERRONEOUS.msg.sortkey', [
-						$pdc->getTitleSubject()
-					] )
+			if( !$pdc->isTitleSubjectConsistent() ) {
+				$erroneous[] = self::createPDCErrorMessage(
+					$pdc,
+					Template::get(
+						// template name
+						'PAGE_COUNT.ERRONEOUS.msg.sortkey',
+
+						// template arguments
+						self::sumArgs( $parent_args, $pdc->getTitleSubject() )
+					)
 				);
 			}
 		}
 		if( $erroneous ) {
-			$sections[] = Template::get( self::TEMPLATE_NAME . '.ERRONEOUS.section', [
-				implode( "\n", $erroneous )
-			] );
+			$sections[] = Template::get(
+				// template name
+				'PAGE_COUNT.ERRONEOUS.section',
+
+				// template arguments
+				self::sumArgs( $parent_args, implode( "\n", $erroneous ) )
+			);
 		}
 
-		$args = parent::getTemplateArguments();
-
-		// Does it have content?
+		// no content no party
 		if( $sections ) {
-			$args[] = implode( "\n", $sections );
-		} else  {
-			$args[] = Template::get( self::TEMPLATE_NAME . '.empty' );
+
+			// the latest argument contains the section
+			$parent_args[] = implode( "\n", $sections );
+		} else {
+
+			// the latest arguments contains an empty section
+			$parent_args[] = Template::get( 'PAGE_COUNT.empty', $parent_args );
 		}
 
-		return $args;
+
+		return $parent_args;
 	}
 
 	/**
@@ -148,7 +171,7 @@ class PageYearMonthDayPDCsCount extends PageYearMonthDayPDCs {
 	 * @return string
 	 */
 	public static function createPDCErrorMessage( $pdc, $message ) {
-		return Template::get( self::TEMPLATE_NAME . '.ERRONEOUS.entry', [
+		return Template::get( 'PAGE_COUNT.ERRONEOUS.entry', [
 			$pdc->getTitle(),
 			$message,
 		] );
