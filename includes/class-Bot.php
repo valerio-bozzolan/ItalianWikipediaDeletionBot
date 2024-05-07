@@ -1,5 +1,5 @@
 <?php
-# Copyright (C) 2018 Valerio Bozzolan
+# Copyright (C) 2018-2024 Valerio Bozzolan, contributors
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as
 # published by the Free Software Foundation, either version 3 of the
@@ -148,8 +148,12 @@ class Bot {
 			$lastedit = PageYearMonthDayPDCsCount::createFromDateTime( $this->getDate() )
 				->fetchLasteditDate();
 
-		} catch( Exception $e ) {
+		} catch( PDCMissingException $e ) {
 			// Unexisting. OK.
+			Log::debug( $e->getMessage() );
+		} catch( PDCWithoutCreationDateException $e ) {
+			// Happened once. Just try to create.
+			Log::debug( $e->getMessage() );
 		}
 		return $lastedit;
 	}

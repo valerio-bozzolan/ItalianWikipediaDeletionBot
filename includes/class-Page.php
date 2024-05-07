@@ -1,6 +1,6 @@
 <?php
 # it.wiki deletion bot in PHP
-# Copyright (C) 2018 Valerio Bozzolan
+# Copyright (C) 2018-2024 Valerio Bozzolan, contributors
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as
 # published by the Free Software Foundation, either version 3 of the
@@ -169,8 +169,18 @@ class Page {
 					return self::createDateTimeFromString( $revision->timestamp );
 				}
 			}
+			if( isset( $page->missing ) ) {
+				throw new PDCMissingException( sprintf(
+					"The page [[%s]] is missing",
+					$this->getTitle()
+				) );
+			}
 		}
-		throw new \Exception( 'unable to fetch the creation date' );
+		throw new PDCWithoutCreationDateException( sprintf(
+			"The page [[%s]] has not a revision with a creation date (using direction %s)",
+			$this->title(),
+			$direction
+		) );
 	}
 
 	/**
