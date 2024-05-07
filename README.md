@@ -22,6 +22,10 @@ git submodule update --init --recursive
 
 ## Configuration
 
+Just run the bot to start the configuration wizard.
+
+Or, to configure it manually:
+
 1. Open the file `config-example.php` with a text editor
 2. Fill your bot credentials
 3. Save-as `config.php`

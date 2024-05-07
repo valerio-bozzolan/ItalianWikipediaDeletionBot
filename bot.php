@@ -1,6 +1,6 @@
 #!/usr/bin/php
 <?php
-# Copyright (C) 2018 Valerio Bozzolan
+# Copyright (C) 2018-2024 Valerio Bozzolan, contributors
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as
 # published by the Free Software Foundation, either version 3 of the
@@ -21,8 +21,9 @@ require __DIR__ . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'auto
 
 use cli\Log;
 
-// load credentials
-require __DIR__ . DIRECTORY_SEPARATOR . 'config.php';
+// Load credentials.
+// If the file does not exist, a wizard starts.
+config_wizard( __DIR__ . DIRECTORY_SEPARATOR . 'config.php' );
 
 // the bot must be in sync with the italian community
 date_default_timezone_set( 'Europe/Rome' );
