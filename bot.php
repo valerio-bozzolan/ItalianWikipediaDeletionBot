@@ -26,7 +26,7 @@ use cli\Log;
 config_wizard( __DIR__ . DIRECTORY_SEPARATOR . 'config.php' );
 
 // the bot must be in sync with the italian community
-date_default_timezone_set( 'Europe/Rome' );
+date_default_timezone_set( Page::COMMUNITY_TIMEZONE );
 
 // allowed only from command line interface
 if( ! isset( $argv[ 0 ] ) ) {
