@@ -2,7 +2,9 @@
 
 This software is an Italian Wikipedia bot. It keeps updated the public deletion logs of Italian Wikipedia pages.
 
-More informations here: https://it.wikipedia.org/wiki/Utente:BotCancellazioni
+More information here:
+
+https://it.wikipedia.org/wiki/Utente:BotCancellazioni
 
 ## Installation
 
@@ -103,7 +105,7 @@ You may not want to know this: HTTP connections, MediaWiki APIs (including login
 
 ## License
 
-Copyright (C) 2018 [Valerio Bozzolan](https://it.wikipedia.org/wiki/Utente:Valerio_Bozzolan)
+Copyright (C) 2018-2024 [Valerio Bozzolan](https://it.wikipedia.org/wiki/Utente:Valerio_Bozzolan), contributors
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as
