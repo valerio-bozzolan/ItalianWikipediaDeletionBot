@@ -2,6 +2,10 @@
 
 This software is an Italian Wikipedia bot. It keeps updated the public deletion logs of Italian Wikipedia pages.
 
+For example, it keeps these pages updated:
+
+https://it.wikipedia.org/wiki/Wikipedia:Pagine_da_cancellare
+
 More information here:
 
 https://it.wikipedia.org/wiki/Utente:BotCancellazioni
@@ -10,7 +14,7 @@ https://it.wikipedia.org/wiki/Utente:BotCancellazioni
 
 ```
 sudo apt install git php-cli
-git clone --recursive https://gitpull.it/source/ItalianWikipediaDeletionBot.git
+git clone --recursive https://gitlab.wikimedia.org/valeriobozzolan/itwiki-deletions-info-bot.git
 ```
 
 ## Update
