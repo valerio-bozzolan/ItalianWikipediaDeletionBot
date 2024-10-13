@@ -20,6 +20,7 @@ namespace itwikidelbot;
 require __DIR__ . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'autoload.php';
 
 use cli\Log;
+use \Throwable;
 
 // Load credentials.
 // If the file does not exist, a wizard starts.
@@ -82,17 +83,23 @@ if( isset( $opts[ 'verbose' ] ) ) {
 
 Log::info( 'start' );
 
-$bot = Bot::createFromString( $DATE );
-if( $MINUTES < 1 || $bot->isLasteditOlderThanMinutes( $MINUTES ) ) {
-	for( $i = 0; $i < $DAYS; $i++ ) {
-		$bot->run()->previousDay();
+try {
+	$bot = Bot::createFromString( $DATE );
+	if( $MINUTES < 1 || $bot->isLasteditOlderThanMinutes( $MINUTES ) ) {
+		for( $i = 0; $i < $DAYS; $i++ ) {
+			$bot->run()->previousDay();
+		}
+	} else {
+		// do not insist
+		Log::info( sprintf(
+			'skip: someone running less than %d minutes ago',
+			$MINUTES
+		) );
 	}
-} else {
-	// do not insist
-	Log::info( sprintf(
-		'skip: someone running less than %d minutes ago',
-		$MINUTES
-	) );
+} catch( Throwable $e ) {
+	// Log the exact time of this crash and throw it as-is
+	Log::error( 'unexpected crash:' );
+	throw $e;
 }
 
 Log::info( 'end' );
