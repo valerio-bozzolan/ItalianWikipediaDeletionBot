@@ -582,6 +582,8 @@ class PDC extends Page {
 	 *
 	 * The temperature is a value betweeen 0-100 determined by esoteric parameters.
 	 *
+	 * @TODO: Calcualate this on-wiki https://phabricator.wikimedia.org/T433807
+	 *
 	 * @return int
 	 */
 	public function getTemperature() {
