@@ -1,16 +1,26 @@
-# Italian Wikipedia Deletion Bot
+# Italian Wikipedia Deletion Bot (BotCancellazioni)
 
-This software is an Italian Wikipedia bot. It keeps updated the public deletion logs of Italian Wikipedia pages.
-
-For example, it keeps these pages updated:
-
-https://it.wikipedia.org/wiki/Wikipedia:Pagine_da_cancellare
-
-More information here:
+This is the software used by the Italian Wikipedia bot "BotCancellazioni" since 2018, running 24/7:
 
 https://it.wikipedia.org/wiki/Utente:BotCancellazioni
 
+The bot "BotCancellazioni" keeps updated the public deletion logs of Italian Wikipedia pages:
+
+https://it.wikipedia.org/wiki/Wikipedia:Pagine_da_cancellare
+
+## Bug Reports / Feature Requests
+
+All Italian users are encouraged to discuss in the talk page, on-wiki:
+
+https://it.wikipedia.org/wiki/Discussioni_utente:BotCancellazioni
+
+All English users, or technical users, are encouraged to file a task in Wikimedia Phabricator, under the column "BotCancellazioni":
+
+https://phabricator.wikimedia.org/tag/tool-itwiki/
+
 ## Installation
+
+To install this software in your computer, run these commands:
 
 ```
 sudo apt install git php-cli
@@ -19,6 +29,8 @@ git clone --recursive https://gitlab.wikimedia.org/valeriobozzolan/itwiki-deleti
 
 ## Update
 
+To pull latest changes, run these commands:
+
 ```
 git pull
 git submodule update --init --recursive
@@ -26,13 +38,13 @@ git submodule update --init --recursive
 
 ## Configuration
 
-Just run the bot to start the configuration wizard.
+The bot supports a configuration wizard. To start the configuration wizard, just execute the bot at least once (look at "Usage").
 
-Or, to configure it manually:
+If you need to manually configure your bot instead:
 
 1. Open the file `config-example.php` with a text editor
-2. Fill your bot credentials
-3. Save-as `config.php`
+2. Save-as `config.php`
+3. Fill your bot credentials using a modern "bot password" - https://it.wikipedia.org/wiki/Speciale:BotPasswords
 
 ## Usage
 
@@ -78,14 +90,6 @@ Help:
 ./bot.php --help
 ```
 
-## Update
-
-To fetch the updates:
-
-```
-git pull --recurse-submodules
-```
-
 ## Hacking
 
 Most of the behaviours — as the content of the categories, the pages, their edit summaries, etc. — can be changed simply hacking the content of the files from the [/templates](/templates) directory. Trust me, you are able to do it.
@@ -113,7 +117,7 @@ You may not want to know this: HTTP connections, MediaWiki APIs (including login
 
 ## License
 
-Copyright (C) 2018-2024 [Valerio Bozzolan](https://it.wikipedia.org/wiki/Utente:Valerio_Bozzolan), contributors
+Copyright (C) 2018-2026 [Valerio Bozzolan](https://it.wikipedia.org/wiki/Utente:Valerio_Bozzolan), contributors
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as
