@@ -580,7 +580,7 @@ class PDC extends Page {
 	/**
 	 * Get the PDC temperature
 	 *
-	 * The temperature is a value betweeen 0-100
+	 * The temperature is a value betweeen 0-100 determined by esoteric parameters.
 	 *
 	 * @return int
 	 */
@@ -588,6 +588,8 @@ class PDC extends Page {
 		$slope  = null;
 		$offset = null;
 		switch( $this->getType() ) {
+			// These alien parameters are taken by MauroBot, 2013
+			// https://it.wikipedia.org/w/index.php?title=Utente:MauroBot/BotCancellazioni/core.js&oldid=63198455#L-736
 			case CategoryYearMonthDay::PDC_TYPE;
 				$slope  =   0.0365;
 				$offset = -24.0;
