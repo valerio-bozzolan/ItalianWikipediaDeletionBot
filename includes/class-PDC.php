@@ -7,7 +7,7 @@
 #	https://it.wikipedia.org/wiki/Utente:MauroBot/BotCancellazioni/core.js
 # 	https://creativecommons.org/licenses/by-sa/3.0/
 #   https://wikimediafoundation.org/wiki/Special:MyLanguage/Terms_of_Use/it
-# Copyright (C) 2018, 2019 Valerio Bozzolan
+# Copyright (C) 2018-2026 Valerio Bozzolan
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as
 # published by the Free Software Foundation, either version 3 of the
@@ -243,7 +243,7 @@ class PDC extends Page {
 		// creation date
 		$creation = null;
 		foreach( $categories as $category ) {
-			if( get_class( $category ) === CategoryYearMonthDay::class ) {
+			if( $category instanceof CategoryYearMonthDay ) {
 				$creation_secure_unprecise = $category->getDateTime();
 				$creation_unsecure_precise = $category->timestamp;
 				if( $creation_secure_unprecise->format( 'Y-m-d' ) === $creation_unsecure_precise->format( 'Y-m-d' ) ) {
