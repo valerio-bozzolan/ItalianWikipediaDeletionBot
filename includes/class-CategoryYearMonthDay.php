@@ -7,7 +7,7 @@
 # 	Utente:MauroBot/BotCancellazioni/category.js
 # 	https://creativecommons.org/licenses/by-sa/3.0/
 #   https://wikimediafoundation.org/wiki/Special:MyLanguage/Terms_of_Use/it
-# Copyright (C) 2018 Valerio Bozzolan
+# Copyright (C) 2018-2026 Valerio Bozzolan
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as
 # published by the Free Software Foundation, either version 3 of the
@@ -23,7 +23,7 @@
 
 namespace itwikidelbot;
 
-use \cli\Log;
+use cli\Log;
 
 /**
  * Handle a daily category that directly contains semplified ("semplificate") PDC pages
