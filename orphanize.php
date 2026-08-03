@@ -1,4 +1,4 @@
-#!/usr/bin/php
+#!/usr/bin/env php
 <?php
 # Copyright (C) 2019 Valerio Bozzolan
 # This program is free software: you can redistribute it and/or modify

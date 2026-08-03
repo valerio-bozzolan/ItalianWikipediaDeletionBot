@@ -1,6 +1,6 @@
-#!/usr/bin/php
+#!/usr/bin/env php
 <?php
-# Copyright (C) 2018-2024 Valerio Bozzolan, contributors
+# Copyright (C) 2018-2026 Valerio Bozzolan, contributors
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as
 # published by the Free Software Foundation, either version 3 of the
