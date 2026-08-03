@@ -42,6 +42,7 @@ $opts = getopt( 'h', [
 	'help',
 	'minutes-ago:',
 	'verbose',
+	'no-term-wrap',
 ] );
 
 // help message
@@ -52,6 +53,7 @@ if( isset( $opts[ 'help' ] ) || isset( $opts[ 'h' ] ) ) {
 	echo "    --minutes-ago=N    quits if the last edit was below N minutes ago (default: 5)\n";
 	echo "    --ask              ask before saving\n";
 	echo "    --verbose          verbose mode\n";
+	echo "    --no-term-wrap     do not automatically wrap output lines to stay inside your terminal\n";
 	echo " -h --help             show this help and exit\n";
 	exit( 0 );
 }
@@ -79,6 +81,11 @@ if( isset( $opts[ 'ask' ] ) ) {
 // verbose mode
 if( isset( $opts[ 'verbose' ] ) ) {
 	Log::$DEBUG = true;
+}
+
+// do not fill the terminal columns
+if( isset( $opts[ 'no-term-wrap' ] ) ) {
+	Log::doNotFillTerminalColumns();
 }
 
 Log::info( 'start' );

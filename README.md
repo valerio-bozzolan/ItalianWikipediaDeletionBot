@@ -48,46 +48,55 @@ If you need to manually configure your bot instead:
 
 ## Usage
 
-Run on today:
+To list all available options:
+
+```
+$ ./bot.php --help
+
+usage: ./bot.php [OPTIONS]
+    --days=DAYS        how many days to be processed (default: 1)
+    --from=YYYY-MM-DD  starting date (default: today)
+    --minutes-ago=N    quits if the last edit was below N minutes ago (default: 5)
+    --ask              ask before saving
+    --verbose          verbose mode
+    --no-term-wrap     do not automatically wrap output lines to stay inside your terminal
+ -h --help             show this help and exit
+```
+
+To run the bot on today:
 
 ```
 ./bot.php
 ```
 
-Run on the latest 10 days from today:
+To run on the latest 10 days from today:
 
 ```
 ./bot.php --days=10
 ```
 
-Run on a specific date (year-month-day):
+To run on a specific date (year-month-day):
 
 ```
 ./bot.php --from=2018-03-13
 ```
 
-Run on a specific date and for 10 days before it:
+To run on a specific date and for 10 days before it:
 
 ```
 ./bot.php --days=10 --from=2018-03-13
 ```
 
-Quit if someone was running the bot just `5` minutes ago (that is the default behaviour):
+To quit if someone was running the bot just `5` minutes ago (that is the default behaviour):
 
 ```
 ./bot.php --minutes-ago=5
 ```
 
-Ask before saving and enable verbose mode:
+To ask before saving and enable verbose mode:
 
 ```
 ./bot.php --ask --verbose
-```
-
-Help:
-
-```
-./bot.php --help
 ```
 
 ## Hacking
