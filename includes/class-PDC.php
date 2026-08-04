@@ -221,7 +221,7 @@ class PDC extends Page {
 
 		// array of instances of the class CategoryYearMonthDay (and subclasses)
 		// they also have the timestamp property
-		$categories = [];
+		$categories_with_date = [];
 		foreach( $page->categories as $category_raw ) {
 			if( self::RUNNING_CAT === $category_raw->title ) {
 				$is_running = true;
@@ -232,10 +232,10 @@ class PDC extends Page {
 
 			// try to recognize this category
 			try {
-				$category = CategoryYearMonthDayTypes::createParsingTitle( $category_raw->title );
-				if( $category ) {
-					$category->timestamp = self::createDateTimeFromString( $category_raw->timestamp );
-					$categories[] = $category;
+				$category_with_date = CategoryYearMonthDayTypes::createParsingTitle( $category_raw->title );
+				if( $category_with_date ) {
+					$category_with_date->timestamp = self::createDateTimeFromString( $category_raw->timestamp );
+					$categories_with_date[] = $category_with_date;
 				}
 			} catch( PDCUnknownCategoryException $e ) {
 				\cli\Log::warn( $e->getMessage() );
@@ -244,10 +244,10 @@ class PDC extends Page {
 
 		// creation date
 		$creation = null;
-		foreach( $categories as $category ) {
-			if( $category instanceof CategoryYearMonthDay ) {
-				$creation_secure_unprecise = $category->getDateTime();
-				$creation_unsecure_precise = $category->timestamp;
+		foreach( $categories_with_date as $category_with_date ) {
+			if( $category_with_date instanceof CategoryYearMonthDay ) {
+				$creation_secure_unprecise = $category_with_date->getDateTime();
+				$creation_unsecure_precise = $category_with_date->timestamp;
 				if( $creation_secure_unprecise->format( 'Y-m-d' ) === $creation_unsecure_precise->format( 'Y-m-d' ) ) {
 					$creation = $creation_unsecure_precise;
 				}
@@ -255,7 +255,7 @@ class PDC extends Page {
 			}
 		}
 
-		if( ! $categories ) {
+		if( ! $categories_with_date ) {
 			throw new PDCException( sprintf(
 				"the PDC was in %d categories and/but no one was recognized",
 				count( $page->categories )
@@ -263,7 +263,7 @@ class PDC extends Page {
 		}
 
 		// find the best (the newest) category to be applied
-		$best_category = CategoryYearMonthDayTypes::findBestCategory( $categories );
+		$best_category = CategoryYearMonthDayTypes::findBestCategory( $categories_with_date );
 
 		// read protection status
 		$is_protected = false;
