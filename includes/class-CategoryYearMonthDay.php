@@ -221,6 +221,10 @@ class CategoryYearMonthDay extends PageYearMonthDay {
 			// https://it.wikipedia.org/w/api.php?action=help&modules=query%2Binfo
 			'clprop' => [ 'sortkey', 'timestamp' ],
 
+			// TODO: remove this workaround after the core API has been fixed.
+			// https://phabricator.wikimedia.org/T433922#12184368
+			'cllimit' => 500,
+
 			// rvprop=timestamp: timestamp of the revision
 			// rvlimit=1: only 1 revision
 			// rvdir=older: order by oldest
