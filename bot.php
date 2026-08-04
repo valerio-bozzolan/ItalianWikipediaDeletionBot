@@ -106,6 +106,11 @@ try {
 } catch( Throwable $e ) {
 	// Log the exact time of this crash and throw it as-is
 	Log::error( 'unexpected crash:' );
+	Log::error( $e->getMessage() );
+
+	// In a terminal, see the full stack trace here.
+	// In a webserver, you can examine your error log.
+	Log::error( 'check the standard error for full details' );
 	throw $e;
 }
 
