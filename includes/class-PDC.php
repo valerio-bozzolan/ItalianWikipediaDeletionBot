@@ -225,7 +225,9 @@ class PDC extends Page {
 		foreach( $page->categories as $category_raw ) {
 			if( self::RUNNING_CAT === $category_raw->title ) {
 				$is_running = true;
-				break;
+
+				// Parse remaining categories.
+				continue;
 			}
 
 			// try to recognize this category
