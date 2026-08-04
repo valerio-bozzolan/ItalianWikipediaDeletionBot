@@ -219,13 +219,22 @@ class PDC extends Page {
 		// is this PDC running?
 		$is_running = false;
 
+		/**
+		 * Array of category raw titles, with the namespace.
+		 *
+		 * @var array<string>
+		 */
+		$category_titles = [];
+
 		// array of instances of the class CategoryYearMonthDay (and subclasses)
 		// they also have the timestamp property
 		$categories_with_date = [];
 		foreach( $page->categories as $category_raw ) {
+
+			$category_titles[] = $category_raw->title;
+
 			if( self::RUNNING_CAT === $category_raw->title ) {
 				$is_running = true;
-
 				// Parse remaining categories.
 				continue;
 			}
@@ -256,8 +265,13 @@ class PDC extends Page {
 		}
 
 		if( ! $categories_with_date ) {
+			// Create a string containing '[[Category:One]] [[Category:Two]]' for easy debugging.
+			$nice_category_titles = self::wrapPageTitlesInBrackets($category_titles);
+			$nice_category_titles = implode(' ', $nice_category_titles);
+
 			throw new PDCException( sprintf(
-				"the PDC was in %d categories and/but no one was recognized",
+				"None of the categories were recognized with a valid date among all the page categories: %s (total categories: %d)",
+				$nice_category_titles,
 				count( $page->categories )
 			) );
 		}
@@ -759,5 +773,21 @@ class PDC extends Page {
 			}
 		}
 		return $this;
+	}
+
+	/**
+	 * Receive some page titles and wrap then with brackets,
+	 * for cosmetic reasons.
+	 *
+	 * @param array<string> $titles Page titles like 'Category:Lol'
+	 * @return array<string> Page titles like '[[Category:Lol]]'
+	 */
+	private static function wrapPageTitlesInBrackets(array $titles): array
+	{
+		$bracketeds = [];
+		foreach ($titles as $title) {
+			$bracketeds[] = '[[' . $title . ']]';
+		}
+		return $bracketeds;
 	}
 }
