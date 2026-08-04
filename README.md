@@ -93,7 +93,7 @@ To quit if someone was running the bot just `5` minutes ago (that is the default
 ./bot.php --minutes-ago=5
 ```
 
-To ask before saving and enable verbose mode:
+To ask before saving and enable verbose mode (good for debugging):
 
 ```
 ./bot.php --ask --verbose
