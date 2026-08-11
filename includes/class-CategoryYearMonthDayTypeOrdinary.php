@@ -7,7 +7,7 @@
 # 	Utente:MauroBot/BotCancellazioni/category.js
 # 	https://creativecommons.org/licenses/by-sa/3.0/
 #   https://wikimediafoundation.org/wiki/Special:MyLanguage/Terms_of_Use/it
-# Copyright (C) 2018 Valerio Bozzolan
+# Copyright (C) 2018-2026 Valerio Bozzolan
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as
 # published by the Free Software Foundation, either version 3 of the
@@ -27,6 +27,10 @@ namespace itwikidelbot;
  * Handle a daily ordinary PDC category
  *
  * e.g. https://it.wikipedia.org/wiki/Categoria:Cancellazioni_ordinarie_del_25_giugno_2012
+ *
+ * @deprecated This category has not been in use since 2013.
+ *             https://it.wikipedia.org/wiki/Speciale:Diff/62875319
+ *             https://it.wikipedia.org/wiki/Discussioni_utente:BotCancellazioni#c-Sakretsu-20260810150200-Categorie_delle_cancellazioni_"ordinarie"
  */
 class CategoryYearMonthDayTypeOrdinary extends CategoryYearMonthDayType {
 

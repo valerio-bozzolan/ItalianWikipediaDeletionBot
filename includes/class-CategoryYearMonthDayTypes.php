@@ -7,7 +7,7 @@
 # 	Utente:MauroBot/BotCancellazioni/category.js
 # 	https://creativecommons.org/licenses/by-sa/3.0/
 #   https://wikimediafoundation.org/wiki/Special:MyLanguage/Terms_of_Use/it
-# Copyright (C) 2018, 2019 Valerio Bozzolan
+# Copyright (C) 2018-2026 Valerio Bozzolan
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU Affero General Public License as
 # published by the Free Software Foundation, either version 3 of the
@@ -39,7 +39,10 @@ class CategoryYearMonthDayTypes {
 	 */
 	public static $TYPES = [
 		CategoryYearMonthDayTypeVoting    ::class, // voting
-		CategoryYearMonthDayTypeOrdinary  ::class, // ordinary
+                // The 'ordinary' category has been deprecated since 2013.
+                // https://it.wikipedia.org/w/index.php?diff=62875319
+                // https://it.wikipedia.org/wiki/Discussioni_utente:BotCancellazioni#c-Valerio_Bozzolan-20260810153600-Sakretsu-20260810150200
+//		CategoryYearMonthDayTypeOrdinary  ::class, // ordinary
 		CategoryYearMonthDayTypeProlonged ::class, // prolonged
 		CategoryYearMonthDayTypeConsensual::class, // consensual
 		CategoryYearMonthDay              ::class, // simple
