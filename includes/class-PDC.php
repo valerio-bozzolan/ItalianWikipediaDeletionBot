@@ -254,7 +254,7 @@ class PDC extends Page {
 		// creation date
 		$creation = null;
 		foreach( $categories_with_date as $category_with_date ) {
-			if( $category_with_date instanceof CategoryYearMonthDay ) {
+			if( get_class( $category_with_date ) === CategoryYearMonthDay::class ) {
 				$creation_secure_unprecise = $category_with_date->getDateTime();
 				$creation_unsecure_precise = $category_with_date->timestamp;
 				if( $creation_secure_unprecise->format( 'Y-m-d' ) === $creation_unsecure_precise->format( 'Y-m-d' ) ) {

@@ -248,7 +248,7 @@ class Bot {
 
 			// save the specific daily category type only if it's not empty
 			// ...or only if it's the main category (that can be without pages)
-			if( $category_type_pdcs || ( $category_type instanceof CategoryYearMonthDay ) ) {
+			if( $category_type_pdcs || get_class( $category_type ) === CategoryYearMonthDay::class ) {
 				$category_type->saveIfNotExists();
 			}
 
