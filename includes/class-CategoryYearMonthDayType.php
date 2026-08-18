@@ -104,4 +104,11 @@ abstract class CategoryYearMonthDayType extends CategoryYearMonthDay {
 		return $parent_arguments;
 	}
 
+	#[Override]
+	public function getShouldBeCreatedEvenIfEmpty(): bool
+	{
+		// All specific categories like 'Categoria:Cancellazioni %s del %s %s %s'
+		// should not be created if are empty.
+		return false;
+	}
 }

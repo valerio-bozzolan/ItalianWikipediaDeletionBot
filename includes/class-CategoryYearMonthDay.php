@@ -280,6 +280,14 @@ class CategoryYearMonthDay extends PageYearMonthDay {
 		return $pdcs;
 	}
 
+	public function getShouldBeCreatedEvenIfEmpty(): bool
+	{
+		// The generic category 'Categoria:Cancellazioni del %s %s %s'
+		// should be created even if empty.
+		// Please override this method as child categories may have different opinions.
+		return true;
+	}
+
 	/**
 	 * Get a "genericity" score of this PDC category type.
 	 *
